@@ -31,8 +31,14 @@ database changes.
 ```bash
 mvn -q -DskipTests package
 sha256sum target/CoreProtect-*.jar
-gh release create v<version>-staticpast.<n> target/CoreProtect-<version>.jar --title "..." --notes "..."
+cp target/CoreProtect-<version>.jar CoreProtect-<version>-staticpast.jar
+gh release create v<version>-staticpast.<n> CoreProtect-<version>-staticpast.jar \
+  --target staticpast --title "..." --notes "Minecraft up to: <LATEST_VERSION>"
 ```
+
+The first line of the release notes must be `Minecraft up to: <version>`, the
+same value as `LATEST_VERSION`. SuegoFaults reads it to know which Minecraft
+versions a release supports. The asset name ends in `-staticpast.jar`.
 
 SuegoFaults pulls the release asset with
 `mise run plugins:third-party` (`minecraft-config/third-party.toml`).
