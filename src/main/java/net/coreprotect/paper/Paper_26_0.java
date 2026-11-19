@@ -3,6 +3,8 @@ package net.coreprotect.paper;
 import java.util.UUID;
 
 import org.bukkit.block.Skull;
+import org.bukkit.entity.CopperGolem;
+import org.bukkit.entity.Entity;
 
 import com.destroystokyo.paper.profile.ProfileProperty;
 
@@ -119,4 +121,12 @@ public class Paper_26_0 extends Paper_v1_20 {
         return builder;
     }
 
+    @Override
+    public boolean isCopperGolemInteracting(Entity entity) {
+        if (!(entity instanceof CopperGolem)) {
+            return false;
+        }
+        CopperGolem.State state = ((CopperGolem) entity).getGolemState();
+        return state == CopperGolem.State.GETTING_ITEM || state == CopperGolem.State.DROPPING_ITEM;
+    }
 }

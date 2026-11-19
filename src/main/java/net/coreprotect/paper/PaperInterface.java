@@ -21,6 +21,8 @@ public interface PaperInterface {
 
     public double getAverageTickTime(Server server);
 
+    public boolean isCopperGolemInteracting(Entity entity);
+
     public String getLine(Sign sign, int line);
 
     public void teleportAsync(Entity entity, Location location);
